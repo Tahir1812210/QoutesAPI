@@ -21,7 +21,7 @@ class Program
         {
             Console.WriteLine("Fetching records from API...");
 
-            for (int i = 0; i < 151; i++)
+            for (int i = 0; i < 172; i++)
             {
                 Console.WriteLine($"Fetching records from API attempt #{i + 1}...");
 
@@ -39,7 +39,7 @@ class Program
                 if (quotes == null || quotes.Count == 0)
                 {
                     Console.WriteLine("No records found in the API response.");
-                    continue;  
+                    continue;
                 }
 
                 Console.WriteLine($"Fetched {quotes.Count} records. Validating data structure...");
@@ -63,8 +63,8 @@ class Program
                 Console.WriteLine("Grouping records by author...");
                 var groupedQuotes = allValidQuotes
                     .GroupBy(q => q.Author)
-                    .OrderBy(g => g.Key) 
-                    .ToDictionary(g => g.Key, g => g.ToList());
+                    .OrderBy(g => g.Key)
+                    .ToDictionary(g => g.Key, g => g.ToList()); // Keep the BreakingBadQuote type
 
                 Console.WriteLine($"Records grouped into {groupedQuotes.Count} authors.");
 
@@ -107,4 +107,3 @@ class Program
         File.WriteAllText(filePath, jsonContent);
     }
 }
-
